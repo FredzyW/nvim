@@ -3,6 +3,18 @@ return {
 		'm4xshen/autoclose.nvim',
 	},
 	{
+	  'mrjones2014/legendary.nvim',
+	  -- since legendary.nvim handles all your keymaps/commands,
+	  -- its recommended to load legendary.nvim before other plugins
+	  priority = 10000,
+	  lazy = false,
+	  -- sqlite is only needed if you want to use frecency sorting
+	  -- dependencies = { 'kkharji/sqlite.lua' }
+	},
+	{
+		'github/copilot.vim',
+	},
+	{
 		"BurntSushi/ripgrep",
 	},
 	{
@@ -72,9 +84,15 @@ return {
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
 	},
+	{ "junegunn/fzf" },
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+          "molleweide/LuaSnip-snippets.nvim",
+		  "saadparwaiz1/cmp_luasnip"
+		},
 		build = "make install_jsregexp"
 	},
 	{

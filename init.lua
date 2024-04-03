@@ -82,7 +82,7 @@ parser_config.csharp = {
 }
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "haskell", "python", "bash", "clojure",  "nix", "dockerfile", "latex", "csharp", "markdown" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "haskell", "python", "bash", "clojure",  "nix", "dockerfile", "latex", "csharp", "markdown", "json", "vue", "typescript" },
   sync_install = false,
   auto_install = true,
   ignore_install = { "javascript" },
@@ -236,7 +236,7 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 require 'lspconfig'.hls.setup {}
 require 'lspconfig'.omnisharp.setup {
-	cmd = { "/home/fw/.nix-profile/bin/dotnet", "/nix/store/jdp56g0j6mf7yjvqy9npw28y4pxcvgsw-omnisharp-roslyn-1.39.10/lib/omnisharp-roslyn/OmniSharp.dll" },
+	cmd = { "/home/fw/.nix-profile/bin/dotnet", "/nix/store/p5yhca81428vblxy036hpl6j62jnyscy-home-manager-path/lib/omnisharp-roslyn/OmniSharp.dll" },
 }
 require 'lspconfig'.clojure_lsp.setup {}
 require 'lspconfig'.nil_ls.setup {}
@@ -256,6 +256,12 @@ require 'lspconfig'.lua_ls.setup {
         }
     }
 }
+require'lspconfig'.vls.setup{}
+require'lspconfig'.volar.setup{
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+}
+require'lspconfig'.vuels.setup{}
+require'lspconfig'.jsonls.setup{}
 
 
 require("catppuccin").setup({
@@ -311,6 +317,7 @@ local cmp = require('cmp')
 cmp.setup({
 	sources = {
 		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
 	},
 	mapping = {
 		['<CR>'] = cmp.mapping.confirm({ select = false }),
@@ -339,3 +346,6 @@ cmp.setup({
 		end,
 	},
 })
+
+-- require'luasnip'.filetype_extend("csharp")
+-- require("luasnip.loaders.from_vscode").lazy_load()
