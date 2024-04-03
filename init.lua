@@ -200,6 +200,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	end,
 })
 
+local telescope = require('telescope')
+
+telescope.setup {
+	pickers = {
+		find_files = {
+			hidden = true
+		}
+	}
+}
+
 local builtin = require('telescope.builtin')
 
 require("telescope").load_extension('harpoon')
@@ -218,10 +228,11 @@ vim.api.nvim_set_keymap('n', '<Space>q', ':q<CR>', {})
 -- Neotree bindings
 vim.api.nvim_set_keymap('n', '<Space>e', ':RnvimrToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_var('rnvimr_enable_ex', 1)
+vim.api.nvim_set_var('rnvimr_hidden_filter', "")
 vim.api.nvim_set_var('rnvimr_enable_picker', 1)
 vim.api.nvim_set_var('rnvimr_edit_cmd', 'drop')
 vim.api.nvim_set_var('rnvimr_draw_border', 0)
-vim.api.nvim_set_var('rnvimr_hide_gitignore', 1)
+vim.api.nvim_set_var('rnvimr_hide_gitignore', 0)
 vim.api.nvim_set_var('rnvimr_border_attr', {fg = 14, bg = -1})
 vim.api.nvim_set_var('rnvimr_enable_bw', 1)
 vim.api.nvim_set_var('rnvimr_shadow_winblend', 70)
